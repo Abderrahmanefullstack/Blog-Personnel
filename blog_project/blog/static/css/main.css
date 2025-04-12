@@ -1,0 +1,56 @@
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.site-header {
+    margin-bottom: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-header {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.card-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    color: #007bff;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.comment {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.alert {
+    border-radius: 8px;
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+footer {
+    margin-top: auto;
+}

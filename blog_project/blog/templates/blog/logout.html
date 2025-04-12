@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h2>Déconnexion</h2>
+        </div>
+        <div class="card-body">
+            <h3>Vous avez été déconnecté</h3>
+            <div class="mt-3">
+                <a href="{% url 'login' %}" class="btn btn-outline-primary">Se reconnecter</a>
+                <a href="{% url 'blog-home' %}" class="btn btn-outline-secondary">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

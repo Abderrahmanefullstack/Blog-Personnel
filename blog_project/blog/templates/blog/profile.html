@@ -1,0 +1,62 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Profil de {{ user.username }}</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {% for field in u_form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Mettre à jour</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h3>Mes articles</h3>
+        </div>
+        <div class="card-body">
+            {% for post in posts %}
+                <article class="mb-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4>
+                            <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                        </h4>
+                        {% if post.category %}
+                            <span class="badge bg-primary">{{ post.category.name }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="text-muted small mb-2">
+                        Publié le {{ post.date_posted|date:"F d, Y" }} • {{ post.views }} vues • {{ post.comments.count }} commentaires
+                    </div>
+                    <div>
+                        <a href="{% url 'post-update' post.id %}" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                        <a href="{% url 'post-delete' post.id %}" class="btn btn-sm btn-outline-danger">Supprimer</a>
+                    </div>
+                </article>
+                {% if not forloop.last %}<hr>{% endif %}
+            {% empty %}
+                <div class="alert alert-info">Vous n'avez pas encore publié d'article.</div>
+                <a href="{% url 'post-create' %}" class="btn btn-primary">Créer un article</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
